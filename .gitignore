@@ -1,0 +1,13 @@
+# Python environments and caches
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local Django data and secrets
+db.sqlite3
+.env
+.env.*
+!.env.example
+

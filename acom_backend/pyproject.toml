@@ -1,0 +1,19 @@
+[project]
+name = "proyecto-acom-capas"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=5.0,<6",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.8",
+]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["*/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
