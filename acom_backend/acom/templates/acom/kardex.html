@@ -1,0 +1,12 @@
+{% extends "acom/base.html" %}
+{% block title %}Kárdex ACOM{% endblock %}
+{% block content %}
+<h1>Kárdex ACOM</h1>
+<p>Créditos acumulados: {{ kardex.total }} de 5.00</p>
+<p>Créditos faltantes: {{ kardex.faltantes }}</p>
+<h2>Avance por campo</h2>
+<table><thead><tr><th>Campo</th><th>Créditos</th></tr></thead><tbody>
+{% for campo in kardex.campos %}<tr><td>{{ campo.nombre }}</td><td>{{ campo.creditos }}</td></tr>{% endfor %}
+</tbody></table>
+<p>{% if kardex.liberado %}Ya puedes liberarte.{% else %}Aún no cumples los requisitos para liberarte.{% endif %}</p>
+{% endblock %}

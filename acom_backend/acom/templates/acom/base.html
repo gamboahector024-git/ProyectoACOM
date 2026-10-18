@@ -5,7 +5,7 @@
   <title>{% block title %}ACOM{% endblock %}</title>
 </head>
 <body>
-  <nav><a href="{% url 'acom:lista_actividades' %}">Actividades</a> · <a href="{% url 'acom:mis_inscripciones' %}">Mis inscripciones</a></nav>
+  <nav><a href="{% url 'acom:lista_actividades' %}">Actividades</a> · <a href="{% url 'acom:mis_inscripciones' %}">Mis inscripciones</a> · <a href="{% url 'acom:kardex' %}">Kárdex</a></nav>
   {% block content %}{% endblock %}
 </body>
 </html>
