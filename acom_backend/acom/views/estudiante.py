@@ -4,10 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .. import selectors
-from ..domain import reglas
 from ..domain.exceptions import AcomError
 from ..models import ActividadComplementaria
-from ..services import inscripciones
+from ..services import inscripciones, kardex as servicio_kardex
 
 
 @login_required
@@ -34,13 +33,20 @@ def inscribirse(request, actividad_id):
 
 @login_required
 def mis_inscripciones(request):
-    total = selectors.total_validado(request.user)
+    resumen = servicio_kardex.kardex(request.user)
     return render(
         request,
         "acom/mis_inscripciones.html",
         {
             "inscripciones": selectors.inscripciones_de(request.user),
-            "creditos_totales": total,
-            "creditos_faltantes": reglas.faltantes(total),
+            "creditos_totales": resumen["total"],
+            "creditos_faltantes": resumen["faltantes"],
+            "por_campo": resumen["campos"],
+            "liberado": resumen["liberado"],
         },
     )
+
+
+@login_required
+def vista_kardex(request):
+    return render(request, "acom/kardex.html", {"kardex": servicio_kardex.kardex(request.user)})

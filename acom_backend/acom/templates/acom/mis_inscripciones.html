@@ -1,7 +1,14 @@
 {% extends "acom/base.html" %}
 {% block content %}
 <h1>Mis inscripciones</h1>
-<p>Créditos acumulados: {{ creditos_totales }} — faltan: {{ creditos_faltantes }}</p>
+<p>Créditos acumulados: {{ creditos_totales }} de 5.00 — faltan: {{ creditos_faltantes }}</p>
+<h2>Avance por campo</h2>
+<ul>
+  {% for campo in por_campo %}
+    <li>{{ campo.nombre }}: {{ campo.creditos }}</li>
+  {% endfor %}
+</ul>
+<p>{% if liberado %}Ya puedes liberarte.{% else %}Aún no cumples los requisitos para liberarte.{% endif %}</p>
 <ul>
   {% for i in inscripciones %}
     <li>{{ i.actividad.nombre }} — {{ i.get_estado_display }}</li>
